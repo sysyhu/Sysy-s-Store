@@ -1,2 +1,29 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<h1>登录</h1>
+<%= form_tag sessions_path, {method: :post, class: "form-horizontal"} do %>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">用户名 *</label>
+    <div class="col-sm-10">
+      <%= text_field_tag :username, nil, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">邮箱 *</label>
+    <div class="col-sm-10">
+      <%= text_field_tag :email, nil, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">密码 *</label>
+    <div class="col-sm-10">
+      <%= password_field_tag :password, nil, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">   	
+      <input type="submit" name="sign_submit" value="登录" class="btn btn-primary">
+    </div>
+  </div>
+<% end -%>
