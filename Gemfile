@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'font-awesome-rails'
-gem 'sorcery'
+# gem 'sorcery'
 
 group :development, :test do
   gem 'pry-rails'
