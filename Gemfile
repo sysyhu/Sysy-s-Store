@@ -16,6 +16,7 @@ gem 'mini_racer'
 # gem 'therubyracer', platforms: :ruby
 gem 'bootstrap-sass'
 gem 'ancestry'
+gem 'will_paginate'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
