@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     !session[:user_id].nil?
   end
 
-  #当前用户
+  #当前用户 
   def current_user
   	if logged_in?
   		@current_user ||= User.find(session[:user_id])
