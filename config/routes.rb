@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   namespace :admin do
+    get 'product_images/index'
+  end
+
+  namespace :admin do
     get 'products/index'
   end
 
@@ -18,7 +22,9 @@ Rails.application.routes.draw do
   	root 'sessions#new'
   	resources :sessions
   	resources :categories
-  	resources :products
+  	resources :products do
+      resources :product_images, only: [:create, :index, :destroy]
+    end
   end
 
 

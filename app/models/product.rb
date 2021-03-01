@@ -1,8 +1,10 @@
 class Product < ApplicationRecord
 
-	belongs_to :category
-
 	before_create :set_default_attrs
+
+	#associations
+	belongs_to :category
+	has_many :product_images
 
 	#validations
 	validates :category_id, presence: { message: "商品分类不能为空" }

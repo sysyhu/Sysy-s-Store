@@ -46,7 +46,7 @@ class Admin::ProductsController < Admin::BaseController
   		redirect_to admin_products_path
   	else
   		flash[:notice] = "商品删除失败，请重试"
-  		redirect_to :back
+  		redirect_back fallback_location: admin_products_path
   	end
   end
 
