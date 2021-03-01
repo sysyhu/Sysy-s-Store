@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'products/index'
+  end
+
+  namespace :admin do
+    get 'products/new'
+  end
+
   root 'welcome#index'
 
   resources :users
@@ -10,6 +18,7 @@ Rails.application.routes.draw do
   	root 'sessions#new'
   	resources :sessions
   	resources :categories
+  	resources :products
   end
 
 
