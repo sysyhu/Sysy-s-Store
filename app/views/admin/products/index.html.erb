@@ -1,2 +1,44 @@
-<h1>Admin::Products#index</h1>
-<p>Find me in app/views/admin/products/index.html.erb</p>
+<div>
+  <div class="pull-right">
+    <%= link_to "新建产品", new_admin_product_path, class: "btn btn-primary" %>
+  </div>
+
+  <h1>
+  	商品(<%= @products.total_entries %>)
+  </h1>
+</div>
+
+<div>
+  <table class="table table-striped">
+    <tr>
+      <th>ID</th>
+      <th>名称</th>
+      <th>UUID</th>
+      <th>状态</th>
+      <th>库存</th>
+      <th>msrp</th>
+      <th>价格</th>
+      <th>描述</th>
+      <th></th>
+    </tr>
+
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.id %></td>
+        <td><%= product.title %></td>
+        <td><%= product.uuid %></td>
+        <td><%= product.status %></td>
+        <td><%= product.amount %></td>
+        <td><%= product.msrp %></td>
+        <td><%= product.price %></td>
+        <td><%= product.description %></td>
+        <td align="right">
+          <%= link_to "编辑", edit_admin_product_path(product) %> 
+          <%= link_to "删除", admin_product_path(product), method: :delete, 'data-confirm': "确认删除吗?" %>
+        </td>
+      </tr>
+    <% end -%>
+  </table>
+
+  <%= will_paginate @products %>
+</div>

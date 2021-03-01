@@ -12,10 +12,10 @@ class Admin::CategoriesController < Admin::BaseController
   	@category = Category.new(category_attr)
   	find_root_categories
   	if @category.save
-  		flash[:notice] = "创建成功"
+  		flash[:notice] = "分类创建成功"
   		redirect_to admin_categories_path
   	else
-  		flash[:notice] = "创建失败，请重试"
+  		flash[:notice] = "分类创建失败，请重试"
   		render action: :new
   	end
   end
@@ -32,31 +32,26 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def edit
-  	find_category
-  	find_root_categories
   	render action: :new
   end
 
   def update
-  	find_category
-  	find_root_categories
   	@category.update_attributes category_attr
   	if @category.save
-  		flash[:notice] = "修改成功"
+  		flash[:notice] = "分类修改成功"
   		redirect_to admin_categories_path
   	else
-  		flash[:notice] = "修改失败，请重试"
+  		flash[:notice] = "分类修改失败，请重试"
   		render action: :new
   	end
   end
 
   def destroy
-  	find_category
   	if @category.destroy
-  		flash[:notice] = "删除成功"
+  		flash[:notice] = "分类删除成功"
   		redirect_to admin_categories_path
   	else
-  		flash[:notice] = "删除失败，请重试"
+  		flash[:notice] = "分类删除失败，请重试"
   		redirect_to :back
   	end
   end

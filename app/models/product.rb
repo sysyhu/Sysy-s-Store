@@ -20,6 +20,11 @@ class Product < ApplicationRecord
 		if: proc { |product| !product.price.blank? }
 	validates :description, presence: { message: "商品描述不能为空"}
 
+	module Status
+		On = 'on'
+		Off = 'off'
+	end
+
 
 	private
 	def set_default_attrs

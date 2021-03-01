@@ -6,7 +6,7 @@ class Category < ApplicationRecord
 
 	#validations
 	validates :title, presence: { message: "分类名称不能为空"}
-	validates :title, uniquenss: { message: "该分类名称已存在"}
+	# validates :title, uniquenss: { message: "该分类名称已存在"}
 
 	before_validation :correct_ancestry
 
