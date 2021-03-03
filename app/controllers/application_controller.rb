@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :logged_in?
 
+  protected
+  def fetch_home_data
+    @categories = Category.grouped_data
+  end
+
 
   #是否登录？
   def logged_in?

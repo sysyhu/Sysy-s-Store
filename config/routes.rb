@@ -1,22 +1,18 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'product_images/index'
-  end
+  get 'products/show'
 
-  namespace :admin do
-    get 'products/index'
-  end
-
-  namespace :admin do
-    get 'products/new'
-  end
+  get 'categories/show'
 
   root 'welcome#index'
 
   resources :users
   
   resources :sessions
+
+  resources :categories, only: [:show]
+
+  resources :products, only: [:show]
 
   namespace :admin do
   	root 'sessions#new'

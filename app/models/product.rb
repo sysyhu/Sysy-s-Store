@@ -5,6 +5,8 @@ class Product < ApplicationRecord
 	#associations
 	belongs_to :category
 	has_many :product_images, -> { order(weight: 'desc') }, dependent: :destroy
+	has_one :main_product_image, -> { order(weight: 'desc') },
+		class_name: :ProductImage
 
 	#validations
 	validates :category_id, presence: { message: "商品分类不能为空" }
@@ -21,6 +23,8 @@ class Product < ApplicationRecord
 	validates :price, numericality: { message: "商品价格必须为数字"},
 		if: proc { |product| !product.price.blank? }
 	validates :description, presence: { message: "商品描述不能为空"}
+
+	scope :onshelf, -> { where(status: Status::On) }
 
 	module Status
 		On = 'on'
