@@ -4,7 +4,7 @@ class Product < ApplicationRecord
 
 	#associations
 	belongs_to :category
-	has_many :product_images
+	has_many :product_images, -> { order(weight: 'desc') }, dependent: :destroy
 
 	#validations
 	validates :category_id, presence: { message: "商品分类不能为空" }

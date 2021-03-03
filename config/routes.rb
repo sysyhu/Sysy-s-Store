@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   	resources :sessions
   	resources :categories
   	resources :products do
-      resources :product_images, only: [:create, :index, :destroy]
+      resources :product_images, only: [:create, :index, :destroy, :update]
     end
   end
 
