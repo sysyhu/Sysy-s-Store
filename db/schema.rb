@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210303015535) do
+ActiveRecord::Schema.define(version: 20210317030638) do
+
+  create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user_id"
+    t.string "address_type"
+    t.string "contact_name"
+    t.string "cellphone"
+    t.string "address"
+    t.string "zipcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "address_type"], name: "index_addresses_on_user_id_and_address_type"
+  end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
@@ -54,6 +66,17 @@ ActiveRecord::Schema.define(version: 20210303015535) do
     t.index ["uuid"], name: "index_products_on_uuid", unique: true
   end
 
+  create_table "shopping_carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user_id"
+    t.string "user_uuid"
+    t.integer "product_id"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_shopping_carts_on_user_id"
+    t.index ["user_uuid"], name: "index_shopping_carts_on_user_uuid"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "username"
     t.string "email", null: false
@@ -61,6 +84,8 @@ ActiveRecord::Schema.define(version: 20210303015535) do
     t.string "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "uuid"
+    t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
 end

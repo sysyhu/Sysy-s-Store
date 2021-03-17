@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(user_attr)
+    @user.uuid = session[:user_uuid]
   	if @user.save
   		flash[:notice] = "注册成功，请登录"
   		redirect_to new_session_path

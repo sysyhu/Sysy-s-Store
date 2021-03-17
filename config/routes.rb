@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'products/show'
-
-  get 'categories/show'
-
   root 'welcome#index'
 
   resources :users
@@ -13,6 +9,16 @@ Rails.application.routes.draw do
   resources :categories, only: [:show]
 
   resources :products, only: [:show]
+
+  resources :shopping_carts
+
+  resources :addresses do
+    member do
+      put :set_default_address
+    end
+  end
+
+  resources :orders
 
   namespace :admin do
   	root 'sessions#new'

@@ -1,14 +1,6 @@
 class Product < ApplicationRecord
 
-	before_create :set_default_attrs
-
-	#associations
-	belongs_to :category
-	has_many :product_images, -> { order(weight: 'desc') }, dependent: :destroy
-	has_one :main_product_image, -> { order(weight: 'desc') },
-		class_name: :ProductImage
-
-	#validations
+	#一、validations
 	validates :category_id, presence: { message: "商品分类不能为空" }
 	validates :title, presence: { message: "商品名称不能为空"}
 	validates :title, uniqueness: { message: "该商品名称已存在，请重新输入"}
@@ -24,14 +16,27 @@ class Product < ApplicationRecord
 		if: proc { |product| !product.price.blank? }
 	validates :description, presence: { message: "商品描述不能为空"}
 
-	scope :onshelf, -> { where(status: Status::On) }
+  #二、associations
+  belongs_to :category
+  has_many :product_images, -> { order(weight: 'desc') }, dependent: :destroy
+  has_one :main_product_image, -> { order(weight: 'desc') },
+    class_name: :ProductImage
 
+	#三、scope
+  scope :onshelf, -> { where(status: Status::On) }
+
+  #四、callback
+  before_create :set_default_attrs
+
+  #常量
 	module Status
 		On = 'on'
 		Off = 'off'
 	end
 
+  #类方法
 
+  #实例方法
 	private
 	def set_default_attrs
 		self.uuid = RandomCode.generate_product_uuid

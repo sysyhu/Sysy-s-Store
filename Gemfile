@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-# source 'https://gems.ruby-china.com'
+#source 'https://ruby.taobao.org'
+#source 'https://gems.ruby-china.com'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.7'
@@ -9,22 +10,22 @@ gem 'mysql2'
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-gem 'mini_racer'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-gem 'bootstrap-sass'
-gem 'ancestry'
-gem 'will_paginate'
-gem 'paperclip'
-
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+# Use CoffeeScript for .coffee assets and views
+gem 'coffee-rails', '~> 4.2'
+# See https://github.com/rails/execjs#readme for more supported runtimes
+#gem 'therubyracer', platforms: :ruby
+gem 'mini_racer'
+
+
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -33,11 +34,25 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'bootstrap-sass'
 gem 'font-awesome-rails'
-# gem 'sorcery'
+gem 'sorcery'
+gem 'ancestry'
+gem 'will_paginate'
+gem 'rest-client', '~> 1.7.3'
+
+#gem 'loofah', '~> 2.2.1'
+#gem 'nokogiri', '~> 1.8.1'
+gem 'paperclip', '~> 5.2.0'
+
 
 group :development, :test do
-  gem 'pry-rails'
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platform: :mri
+
+  gem 'database_cleaner', '~> 1.5.3'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -45,6 +60,9 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  # gem 'spring'
-  # gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
