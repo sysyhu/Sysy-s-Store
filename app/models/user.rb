@@ -13,14 +13,15 @@ class User < ApplicationRecord
 
 	#password
 	attr_accessor :password, :password_confrimation
-	validates :password, presence: {message: "密码不能为空"}
-	validates :password, length: {minimum: 6, message: "密码至少6位"}
-	validates :password, confirmation: {message: "密码不一致"}
-	validates :password_confirmation, presence: {message: "确认密码不能为空"}
+	validates :password, presence: {message: "密码不能为空"}, on: :create
+	validates :password, length: {minimum: 6, message: "密码至少6位"}, on: :create
+	validates :password, confirmation: {message: "密码不一致"}, on: :create
+	validates :password_confirmation, presence: {message: "确认密码不能为空"}, on: :create
 
 	#二、associations
-	has_many :addresses, -> { where(address_type: Address::AddressType::User) }
-	belongs_to :default_address, class_name: :Address
+  has_many :addresses, -> { where(address_type: Address::AddressType::User).order("id desc") }
+  belongs_to :default_address, class_name: :Address
+  has_many :orders
 
   #三、scope
 

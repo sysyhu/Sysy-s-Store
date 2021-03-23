@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
 
   def destroy
   	logout
+    cookies[:user_uuid] = nil
   	flash[:notice] = "退出成功"
   	redirect_to root_path
   end

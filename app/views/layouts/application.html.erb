@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
 
  	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= yield :stylesheets %>
   </head>
 
   <body>
@@ -19,5 +20,6 @@
     </div>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= yield :javascripts %>
   </body>
 </html>
