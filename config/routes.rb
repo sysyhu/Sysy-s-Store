@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   resources :orders
 
+  resources :payments, only: [:index]
+
   namespace :admin do
   	root 'sessions#new'
   	resources :sessions
