@@ -22,9 +22,9 @@ module MasterRailsByActions
     # Rails 5中在生产环境下autoload_paths并不会自动加载，需要下面的配置重新启用
     config.enable_dependency_loading = true
 
-    config.autoload_paths += %W[#{Rails.root}/lib]
+    config.autoload_paths += %W[#{Rails.root}/lib] #!!! lib/random_code.rb 才能被调用
 
-    config.generators do |generator| 
+    config.generators do |generator| #!!!各种配置问题
       generator.assets false #执行 rails g 相应文件时，不用自动生成 assets 文件
       generator.test_framework false
       generator.skip_routes true

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users
   
   resources :sessions
+  delete '/logout' => 'sessions#destroy', as: :logout
 
   resources :categories, only: [:show]
 
@@ -22,7 +23,7 @@ Rails.application.routes.draw do
 
   resources :payments, only: [:index]
 
-  namespace :admin do
+  namespace :admin do #!!!一系列配置问题：assets，config...
   	root 'sessions#new'
   	resources :sessions
   	resources :categories

@@ -3,14 +3,26 @@ class Admin::CategoriesController < Admin::BaseController
 	before_action :find_root_categories, only: [:new, :create, :edit, :update]
 	before_action :find_category, only: [:edit, :update, :destroy]
 
+  def index
+    if params[:id].blank?
+      @categories = Category.roots
+    else #查看子分类
+      @category = Category.find(params[:id])
+      @categories = @category.children
+    end
+
+    @categories = @categories.page(params[:page] || 1).per_page(params[:per_page] || 10).order(id: "desc")
+  end  
+
   def new
   	@category = Category.new
-  	find_root_categories
+  	#find_root_categories
   end
 
   def create
   	@category = Category.new(category_attr)
-  	find_root_categories
+  	#find_root_categories 
+    #!!!如果 save 失败，render action: :new 里需要 @root_categoris
   	if @category.save
   		flash[:notice] = "分类创建成功"
   		redirect_to admin_categories_path
@@ -20,22 +32,17 @@ class Admin::CategoriesController < Admin::BaseController
   	end
   end
 
-  def index
-  	if params[:id].blank?
-  		@categories = Category.roots
-  	else
-  		@category = Category.find(params[:id])
-  		@categories = @category.children
-  	end
 
-  	@categories = @categories.page(params[:page] || 1).per_page(params[:per_page] || 10).order(id: "desc")
-  end
 
   def edit
+    #find_root_categories
+    #find_category 
   	render action: :new
   end
 
   def update
+    #find_root_categories 
+    #find_category 
   	@category.update_attributes category_attr
   	if @category.save
   		flash[:notice] = "分类修改成功"
@@ -47,6 +54,7 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def destroy
+    #find_category 
   	if @category.destroy
   		flash[:notice] = "分类删除成功"
   		redirect_to admin_categories_path

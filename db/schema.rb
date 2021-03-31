@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20210323081132) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
-    t.integer "weight", default: 0
+    t.integer "weight", default: 0 #!!!
     t.integer "products_counter", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -63,9 +63,9 @@ ActiveRecord::Schema.define(version: 20210323081132) do
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "category_id"
+    t.integer "category_id" #!!!A: 先搞好关联关系
     t.string "title"
-    t.string "status", default: "off"
+    t.string "status", default: "off" #!!!
     t.integer "amount", default: 0
     t.string "uuid"
     t.decimal "msrp", precision: 10, scale: 2

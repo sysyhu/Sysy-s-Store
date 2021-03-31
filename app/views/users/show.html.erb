@@ -1,0 +1,6 @@
+<h1>用户个人信息</h1>
+
+<p><%= @user.username %></p>
+<p><%= @user.email %></p>
+
+<%= link_to "修改个人信息", edit_user_path(@user) %>
